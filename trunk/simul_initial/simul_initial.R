@@ -42,6 +42,15 @@ plot(out$h, out$ratio, ylim=c(0,.5), type='b', pch=19)
 
 # Based on given s & v, create SR curve
 
+h <- 0.6
+res <- genBRP(age=1:25, Linf=100, k=exp(0.5235792+log(100)*-0.4540248),
+  a1=1, sL=0.5, sR=150, mat95=3, s=h, v=1e3)
+v <- 1e3
+spr0 <- spr0(res)
+
+ssb <- seq(0.1, 5000, length=500)
+rec <- eval(as.list(bevholtSV()$model)[[3]], list(s=h, v=v, spr0=spr0, ssb=ssb))
+
 # Add variability with fixed CV at each SSB value, env. stochasticity
 
 # Estimate s & v
@@ -49,6 +58,10 @@ plot(out$h, out$ratio, ylim=c(0,.5), type='b', pch=19)
 # Distribution of FMSY/Fcrash ratio for each value of h
 
 # Repeat for different levels of noise (CV)
+
+# Repeat for different values of h
+
+# Check CV(SR) vs. CV(h)
 
 
 # SIM 3:
